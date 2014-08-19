@@ -4,7 +4,12 @@
 var Percolator = require('percolator').Percolator;
 var CRUDCollection = require('percolator').CRUDCollection;
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/YakTest');
+var fs = require('fs');
+var formidable = require('formidable'),
+	http = require('http'),
+	util = require('util');
+
+mongoose.connect('mongodb://0.0.0.0/YakTest');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -125,7 +130,7 @@ var documentsCollection = new CRUDCollection({
 
 });
 
-var extendedHandler = {
+documentsCollection.extendedHandler = {
 		DELETE : function(req, res){
 			Document.remove({}, function(err){
 				if(err)	console.log("an error occurred", err);
@@ -135,15 +140,55 @@ var extendedHandler = {
 		}
 	}
 
+documentsCollection.imagesHandler = {
+	DELETE : function(req, res) {
+		Document.remove({name: id}, function(err){
+			if(err)	console.log("an error occurred", err);
+		});
+		res.writeHead(
+			res.status.noContent()
+		);
+		res.end();
+	},
+	POST : function(req, res) {
+		console.log("called upload image", req.files);
 
-var app = { port : 3001 };
+		return;
+
+	}
+}
+
+
+var app = {
+	port : 3001,
+	staticDir: __dirname + '/../static'
+};
+
 var server = new Percolator(app);
 
 server.route('/documents', documentsCollection.handler);
 server.route('/documents/:id', documentsCollection.wildcard);
-server.route('/documents/testUtil/destroy', extendedHandler);
+server.route('/documents/testUtil/destroy', documentsCollection.extendedHandler);
 
 server.listen(function(){
 	console.log(server.server.router.routes);
 	console.log('Listening on port ', app.port);
 });
+
+http.createServer(function(req, res) {
+	var route = new RegExp("\/documents/images/upload/?","i");
+	if (route.test(req.url) && req.method.toLowerCase() == 'post') {
+		// parse a file upload
+		var form = new formidable.IncomingForm();
+		form.uploadDir = __dirname + "/../static/images";
+		form.keepExtensions = true;
+
+		form.parse(req, function (err, fields, files) {
+			res.writeHead(200, {'content-type': 'application/json'});
+			res.write(JSON.stringify(JSON.parse(files)));
+			res.end();
+		});
+
+		return;
+	}
+}).listen(8080);

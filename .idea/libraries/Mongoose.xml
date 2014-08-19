@@ -145,8 +145,8 @@
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/error/overwriteModel.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/types/buffer.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/types/array.js" />
-        <item url="file://$USER_HOME$/node_modules/mongoose/lib/types/index.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/node_modules/regexp-clone/index.js" />
+        <item url="file://$USER_HOME$/node_modules/mongoose/lib/types/index.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/types/objectid.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/schema/boolean.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/types/documentarray.js" />
@@ -156,11 +156,11 @@
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/error/version.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/error/divergentArray.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/lib/error/messages.js" />
-        <item url="file://$USER_HOME$/node_modules/mongoose/lib/error/validator.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/node_modules/regexp-clone/test/index.js" />
+        <item url="file://$USER_HOME$/node_modules/mongoose/lib/error/validator.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/node_modules/mpromise/test/promises.Aplus.js" />
-        <item url="file://$USER_HOME$/node_modules/mongoose/examples/statics/statics.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/node_modules/mpromise/test/promise.test.js" />
+        <item url="file://$USER_HOME$/node_modules/mongoose/examples/statics/statics.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/examples/express/connection-sharing/app.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/examples/promises/promise.js" />
         <item url="file://$USER_HOME$/node_modules/mongoose/examples/promises/person.js" />
@@ -379,8 +379,8 @@
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/error/overwriteModel.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/types/buffer.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/types/array.js" />
-      <root url="file://$USER_HOME$/node_modules/mongoose/node_modules/regexp-clone/index.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/types/index.js" />
+      <root url="file://$USER_HOME$/node_modules/mongoose/node_modules/regexp-clone/index.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/types/objectid.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/schema/boolean.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/types/documentarray.js" />
@@ -390,11 +390,11 @@
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/error/version.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/error/divergentArray.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/error/messages.js" />
-      <root url="file://$USER_HOME$/node_modules/mongoose/node_modules/regexp-clone/test/index.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/lib/error/validator.js" />
+      <root url="file://$USER_HOME$/node_modules/mongoose/node_modules/regexp-clone/test/index.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/node_modules/mpromise/test/promises.Aplus.js" />
-      <root url="file://$USER_HOME$/node_modules/mongoose/node_modules/mpromise/test/promise.test.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/examples/statics/statics.js" />
+      <root url="file://$USER_HOME$/node_modules/mongoose/node_modules/mpromise/test/promise.test.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/examples/express/connection-sharing/app.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/examples/promises/promise.js" />
       <root url="file://$USER_HOME$/node_modules/mongoose/examples/promises/person.js" />
