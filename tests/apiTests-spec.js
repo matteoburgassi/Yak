@@ -165,8 +165,8 @@ function testAddImage(indexFromZeroToNine) {
 				form.enctype = "multipart/form-data";
 				form.method = "post"
 				form.append('my_file', request('http://0.0.0.0:3001/images/testImg.jpeg'));
-				form.submit('http://0.0.0.0:8080/documents/images/upload/' + retrieved._id,function(err, res){
-					console.log("posted", res);
+				form.submit('http://0.0.0.0:3001/documents/images/upload/' + retrieved._id,function(err, res){
+					console.log("posted", res.headers.location);
 				})
 			}).toss();
 	}

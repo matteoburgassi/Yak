@@ -5,7 +5,7 @@ var Percolator = require('percolator').Percolator;
 var CRUDCollection = require('percolator').CRUDCollection;
 var mongoose = require('mongoose');
 var fs = require('fs');
-var formidable = require('formidable'),
+var multiparty = require('multiparty')
 	http = require('http'),
 	util = require('util');
 
@@ -151,7 +151,16 @@ documentsCollection.imagesHandler = {
 		res.end();
 	},
 	POST : function(req, res) {
-		console.log("called upload image", req.files);
+		console.log("called upload image");
+		var form = new multiparty.Form();
+		form.uploadDir = __dirname + "/../static/images";
+
+		form.parse(req, function (err, fields, files) {
+			if (err){
+				return res.status.internalServerError(err);
+			}
+			return res.status.created(JSON.stringify(files));
+		});
 
 		return;
 
@@ -166,29 +175,14 @@ var app = {
 
 var server = new Percolator(app);
 
+server.connectMiddleware(multiparty);
+
 server.route('/documents', documentsCollection.handler);
 server.route('/documents/:id', documentsCollection.wildcard);
+server.route('/documents/images/upload/:id', documentsCollection.imagesHandler);
 server.route('/documents/testUtil/destroy', documentsCollection.extendedHandler);
 
 server.listen(function(){
 	console.log(server.server.router.routes);
 	console.log('Listening on port ', app.port);
 });
-
-http.createServer(function(req, res) {
-	var route = new RegExp("\/documents/images/upload/?","i");
-	if (route.test(req.url) && req.method.toLowerCase() == 'post') {
-		// parse a file upload
-		var form = new formidable.IncomingForm();
-		form.uploadDir = __dirname + "/../static/images";
-		form.keepExtensions = true;
-
-		form.parse(req, function (err, fields, files) {
-			res.writeHead(200, {'content-type': 'application/json'});
-			res.write(JSON.stringify(JSON.parse(files)));
-			res.end();
-		});
-
-		return;
-	}
-}).listen(8080);
