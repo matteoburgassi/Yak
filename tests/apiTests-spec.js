@@ -56,8 +56,9 @@ testAddImage(Math.floor(Math.random() * 10));
 function createMockJSON(i) {
 	if (i) {
 		return {
-			"name": "prova" + i,
+			"name": "prova " + i,
 			"description": "this is a test " + i + " document",
+			"category": "category" + i,
 			"authors": [
 				{
 					"name": "Matteo",
@@ -70,6 +71,7 @@ function createMockJSON(i) {
 		return {
 			"name": "prova",
 			"description": "this is a test document",
+			"category": "category",
 			"authors": [
 				{
 					"name": "Matteo",
@@ -105,7 +107,7 @@ function testFindADoc(indexFromZeroToNine) {
 			.afterJSON(function (doc) {
 				title = doc._items[indexFromZeroToNine].name;
 				frisby.create('find the element by name')
-					.get('http://127.0.0.1:3001/documents/' + title)
+					.get('http://127.0.0.1:3001/documents/' + encodeURI(title))
 					.expectStatus(200)
 					.afterJSON(function (doc) {
 						expect(doc[0].name = title);
@@ -154,6 +156,14 @@ function testDeleteADoc(indexFromZeroToNine) {
 	}
 }
 
+function retrieveFilePath(headers) {
+	var path = JSON.parse(headers.location);
+	path = path.my_file[0].path;
+	path = path.split('/');
+	path = path[path.length-1];
+	return 'images/'+path;
+}
+
 function testAddImage(indexFromZeroToNine) {
 	var retrieved;
 	if (indexFromZeroToNine) {
@@ -166,9 +176,25 @@ function testAddImage(indexFromZeroToNine) {
 				form.method = "post"
 				form.append('my_file', request('http://0.0.0.0:3001/images/testImg.jpeg'));
 				form.submit('http://0.0.0.0:3001/documents/images/upload/' + retrieved._id,function(err, res){
-					console.log("posted", res.headers.location);
+					var path = retrieveFilePath(res.headers);
+					retrieved.images.push({
+						title: "TestAdd",
+						caption: "TestCaption",
+						path: path
+					});
+					frisby.create('image saved')
+						.put('http://127.0.0.1:3001/documents/' + retrieved.name,
+						retrieved,
+						{
+							json: true
+						})
+						.toss();
+					frisby.create('verify added image')
+						.get('http://127.0.0.1:3001/'+path)
+						.expectStatus(200)
+						.toss();
 				})
 			}).toss();
 	}
-
+	return;
 }

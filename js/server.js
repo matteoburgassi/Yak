@@ -32,6 +32,11 @@ var jsonSchema = {
 			type : "string",
 			required : true
 		},
+		category:{
+			title: "category",
+			type: "string",
+			required : true
+		},
 		authors : {
 			title : "authors",
 			type : "array",
@@ -59,6 +64,7 @@ var documentSchema = mongoose.Schema({
 		}
 	],
 	date: { type: Date, default: Date.now },
+	category: String,
 	images: [
 		{
 			title: String,
