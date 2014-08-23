@@ -1,0 +1,14 @@
+{
+	"name": "YAK",
+	"version": "0.0.1",
+	"description": "yet another Kontent management system",
+	"author": "Matteo Burgassi <matteoburgassi@gmail.com>",
+	"dependancies":
+	{
+		"percolator" : "1.5.0",
+		"mongoose" : "3.8.14",
+		"multiparty" : "3.3.2",
+		"form-data" : "0.1.4",
+		"parseurl" : "1.3.0"
+	}
+}
