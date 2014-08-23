@@ -8,8 +8,11 @@ var fs = require('fs');
 var multiparty = require('multiparty')
 	http = require('http'),
 	util = require('util');
-
-mongoose.connect('mongodb://0.0.0.0/YakTest');
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "YakTest");
+} else {
+	mongoose.connect('mongodb://0.0.0.0/YakTest');
+}
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -175,7 +178,7 @@ documentsCollection.imagesHandler = {
 
 
 var app = {
-	port : 80,
+	port : process.env.OPENSHIFT_NODEJS_PORT || 3001,
 	staticDir: __dirname + '/../static'
 };
 
