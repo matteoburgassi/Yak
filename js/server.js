@@ -194,5 +194,6 @@ server.route('/documents/testUtil/destroy', documentsCollection.extendedHandler)
 
 server.listen(function(){
 	console.log(server.server.router.routes);
-	console.log('Listening on port ', app.port);
+
+	console.log('Listening on:', server.server.ip +":"+server.server.port);
 });
