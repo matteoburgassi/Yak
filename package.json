@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"description": "yet another Kontent management system",
 	"author": "Matteo Burgassi <matteoburgassi@gmail.com>",
-	"dependancies":
+	"dependencies":
 	{
 		"percolator" : "1.5.0",
 		"mongoose" : "3.8.14",
