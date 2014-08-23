@@ -11,5 +11,8 @@
 		"form-data" : "0.1.4",
 		"parseurl" : "1.3.0"
 	},
-	"main" : "./js/server.js"
+	"scripts": {
+		"start": "node js/server.js"
+	},
+	"main" : "js/server.js"
 }
