@@ -175,7 +175,7 @@ documentsCollection.imagesHandler = {
 
 
 var app = {
-	port : 3001,
+	port : 80,
 	staticDir: __dirname + '/../static'
 };
 
