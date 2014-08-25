@@ -10,9 +10,9 @@ var multiparty = require('multiparty')
 http = require('http'),
 	util = require('util');
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "YakTest");
+	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "qayin");
 } else {
-	mongoose.connect('mongodb://0.0.0.0/YakTest');
+	mongoose.connect('mongodb://0.0.0.0/qayin');
 }
 
 var db = mongoose.connection;
