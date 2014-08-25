@@ -1,3 +1,4 @@
+console.log("starting server");
 /**
  * Created by matteo on 08/08/14.
  */
@@ -6,7 +7,7 @@ var CRUDCollection = require('percolator').CRUDCollection;
 var mongoose = require('mongoose');
 var fs = require('fs');
 var multiparty = require('multiparty')
-	http = require('http'),
+http = require('http'),
 	util = require('util');
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
 	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "YakTest");
