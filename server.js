@@ -162,7 +162,7 @@ documentsCollection.imagesHandler = {
 	POST : function(req, res) {
 		console.log("called upload image");
 		var form = new multiparty.Form();
-		form.uploadDir = __dirname + "/../static/images";
+		form.uploadDir = __dirname + "/static/images";
 
 		form.parse(req, function (err, fields, files) {
 			if (err){
@@ -180,7 +180,7 @@ documentsCollection.imagesHandler = {
 var app = {
 	port : process.env.OPENSHIFT_NODEJS_PORT || 3001,
 	ip: process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0",
-	staticDir: __dirname + '/../static'
+	staticDir: __dirname + '/static'
 };
 
 var server = new Percolator(app);
@@ -194,6 +194,5 @@ server.route('/documents/testUtil/destroy', documentsCollection.extendedHandler)
 
 server.listen(function(){
 	console.log(server.server.router.routes);
-
 	console.log('Listening on:', server.server.ip +":"+server.server.port);
 });
