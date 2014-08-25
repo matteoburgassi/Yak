@@ -11,6 +11,7 @@ http = require('http'),
 	util = require('util');
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
 	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "qayin");
+	console.log("connect to mongodb");
 } else {
 	mongoose.connect('mongodb://0.0.0.0/qayin');
 }
@@ -181,11 +182,12 @@ documentsCollection.imagesHandler = {
 
 var app = {
 	port : process.env.OPENSHIFT_NODEJS_PORT || 3001,
-	ip: process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0",
 	staticDir: __dirname + '/static'
 };
 
 var server = new Percolator(app);
+
+server.server.ip = process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 
 server.connectMiddleware(multiparty);
 
