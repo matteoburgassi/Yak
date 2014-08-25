@@ -177,6 +177,7 @@ documentsCollection.imagesHandler = {
 }
 
 
+
 var app = {
 	port : process.env.OPENSHIFT_NODEJS_PORT || 3001,
 	ip: process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0",
