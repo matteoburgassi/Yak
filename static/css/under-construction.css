@@ -1,25 +1,25 @@
 .logo-container {
-	width: 50%;
-	margin: 0 auto;
-	background: #000;
-	position: relative;
+  width: 50%;
+  margin: 0 auto;
+  background: #000;
+  position: relative;
 }
-
 .logo {
-	width: 100%;
-	position: relative;
+  width: 100%;
+  position: relative;
 }
-
 .logo-no-text {
-	width: 100%;
-	position: absolute;
-	top: 0;
-	right: 0;
-	-webkit-animation: spin 10s infinite linear;
-
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-animation: spin 10s infinite linear;
 }
-
 @-webkit-keyframes spin {
-	0%   {-webkit-transform: rotate(0deg)}
-	100% {-webkit-transform: rotate(360deg)}
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }

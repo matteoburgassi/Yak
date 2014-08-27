@@ -13,7 +13,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_URL){
 	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "qayin");
 	console.log("connect to mongodb");
 } else {
-	mongoose.connect('mongodb://0.0.0.0/qayin');
+	mongoose.connect('mongodb://0.0.0.0/YakTest');
 }
 
 var db = mongoose.connection;
@@ -164,7 +164,7 @@ documentsCollection.imagesHandler = {
 	POST : function(req, res) {
 		console.log("called upload image");
 		var form = new multiparty.Form();
-		form.uploadDir = __dirname + "/static/images";
+		form.uploadDir = __dirname + "/../static/images";
 
 		form.parse(req, function (err, fields, files) {
 			if (err){
@@ -182,7 +182,7 @@ documentsCollection.imagesHandler = {
 
 var app = {
 	port : process.env.OPENSHIFT_NODEJS_PORT || 3001,
-	staticDir: __dirname + '/static'
+	staticDir: __dirname + '/../static'
 };
 
 var server = new Percolator(app);
