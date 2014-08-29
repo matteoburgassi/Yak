@@ -1,18 +1,51 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="adminApp">
 <head lang="en" >
 	<meta charset="UTF-8">
-	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
-	<link href="../css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+	<link href="../js/libraries/bower_components/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 
 	<script src="../js/libraries/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="../js/libraries/bower_components/angular/angular.js"></script>
 
+	<script src="js/controllers.js"></script>
+
 	<title>QAYIN Admin Panel</title>
 </head>
-<body>
+<body ng-controller="DocumentListCtrl">
 	<div class="container">
-		Nothing here {{'yet' + '!'}}
+		<div class="row">
+			<div class="col-md-8">
+				<div class="h2">Documents</div>
+			</div>
+			<div class="col-md-4">
+				<div class="h2">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<span class="glyphicon glyphicon-search"></span>
+							</div>
+							<input class="form-control" type="text" ng-model="query" placeholder="Search query">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<td><h3>#</h3></td>
+					<td><h3>Name</h3></td>
+					<td><h3>Category</h3></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="document in documents | filter : query">
+					<td>{{$index+1}}</td>
+					<td>{{document.name}}</td>
+					<td>{{document.category}}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

@@ -11,6 +11,7 @@
     <orderEntry type="library" name="Mongoose" level="project" />
     <orderEntry type="library" name="Frisby" level="project" />
     <orderEntry type="library" name="Formidable" level="project" />
+    <orderEntry type="library" name="Yak node_modules" level="project" />
   </component>
 </module>
 

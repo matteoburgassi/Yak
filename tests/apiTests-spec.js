@@ -110,7 +110,7 @@ function testFindADoc(indexFromZeroToNine) {
 					.get('http://127.0.0.1:3001/documents/' + encodeURI(title))
 					.expectStatus(200)
 					.afterJSON(function (doc) {
-						expect(doc[0].name = title);
+						expect(doc[0].name == title);
 					})
 					.toss()
 			})
