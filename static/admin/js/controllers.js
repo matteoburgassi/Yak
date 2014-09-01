@@ -3,9 +3,8 @@
  */
 var adminApp = angular.module('adminApp', []);
 
-adminApp.controller('DocumentListCtrl', function($scope) {
-	$scope.documents =[
-		{"name": "pippo", "category": "projects"},
-		{"name": "pluto", "category": "docs"}
-	]
+adminApp.controller('DocumentListCtrl', function($scope, $http) {
+	$http.get('../documents').success(function(data) {
+		$scope.documents = data._items;
+	});
 })

@@ -12,7 +12,14 @@
 	<title>QAYIN Admin Panel</title>
 </head>
 <body ng-controller="DocumentListCtrl">
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="row">
+			<h1 class="navbar-inverse-header">QAYIN Admin Panel</h1>
+		</div>
+	</div>
+</nav>
+<section class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
@@ -25,31 +32,41 @@
 							<div class="input-group-addon">
 								<span class="glyphicon glyphicon-search"></span>
 							</div>
-							<input class="form-control" type="text" ng-model="query" placeholder="Search query">
+							<input class="form-control" type="text" ng-model="query" placeholder="Search">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</nav>
+</section>
 <div class="container">
-		<table class="table">
-			<thead>
-				<tr>
-					<td><h3>#</h3></td>
-					<td><h3>Name</h3></td>
-					<td><h3>Category</h3></td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="document in documents | filter : query">
-					<td>{{$index+1}}</td>
-					<td>{{document.name}}</td>
-					<td>{{document.category}}</td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar">
+				<button type="button" class="pull-right btn btn-default navbar-btn"><span class="text-info glyphicon glyphicon-plus"></span></button>
+			</nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><h3>#</h3></td>
+						<td><h3>Name</h3></td>
+						<td><h3>Category</h3></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="document in documents | filter : query | orderBy:orderProp">
+						<td>{{$index+1}}</td>
+						<td>{{document.name}}</td>
+						<td>{{document.category}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
