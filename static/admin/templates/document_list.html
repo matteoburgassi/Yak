@@ -1,0 +1,51 @@
+<section class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<span class="navbar-brand">Documents</span>
+			</div>
+			<div class="col-md-4">
+				<div class="navbar-form navbar-right">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<span class="glyphicon glyphicon-search"></span>
+							</div>
+							<input class="form-control" type="text" ng-model="query" placeholder="Search">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar">
+				<a class="pull-right btn btn-default navbar-btn" ui-sref="documentDetail">
+					<span class="text-info glyphicon glyphicon-plus"></span></a>
+			</nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+				<tr>
+					<td><h3>#</h3></td>
+					<td><h3>Name</h3></td>
+					<td><h3>Category</h3></td>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="document in documents | filter : query">
+					<td>{{$index+1}}</td>
+					<td>{{document.name}}</td>
+					<td>{{document.category}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

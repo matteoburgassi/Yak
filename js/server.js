@@ -133,8 +133,8 @@ var documentsCollection = new CRUDCollection({
 
 	fetch : function(req, res, cb){
 		console.log("fetch called", req.uri.child());
-		Document.find({name: req.uri.child()}, function(err, doc){
-			console.log(err, doc);
+		Document.find({name: decodeURI(req.uri.child())}, function(err, doc){
+			console.log(req.uri.child(), err, doc);
 			cb(null, doc);
 		});
 	}
