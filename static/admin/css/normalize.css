@@ -8,3 +8,6 @@ section.navbar {
 body {
   padding-top: 140px;
 }
+.pointer {
+  cursor: pointer;
+}

@@ -8,6 +8,10 @@ yakAdminControllers.controller('DocumentListCtrl', ['$scope', '$http',
 		$http.get('../documents').success(function(data) {
 			$scope.documents = data._items;
 		});
+
+		$scope.openDetail = function(name){
+			location.href = "#/documents/"+encodeURIComponent(name);
+		}
 	}
 ]);
 
@@ -22,8 +26,17 @@ yakAdminControllers.controller('DocumentDetailCtrl', ['$scope', '$http', '$state
 			$scope.detail = data[0];
 			var modalInstance = $modal.open({
 				templateUrl: 'templates/document_detail.html',
-				controller: function(){
-					console.log($scope.detail);
+				scope: $scope,
+				backdrop: 'static',
+				controller: function($scope, $modalInstance){
+					$scope.ok = function () {
+					};
+
+					$scope.cancel = function () {
+						$modalInstance.dismiss('cancel');
+						location.href = "#/documents";
+					};
+
 				},
 				size: 'lg'
 			});

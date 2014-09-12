@@ -1,10 +1,70 @@
 <div class="modal-header">
-	<h4 class="modal-title">Title</h4>
+	<button type="button" class="close" ng-click="cancel()">
+		<span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span>
+		<span class="sr-only">Close</span>
+	</button>
+	<h4 class="modal-title">{{detail.name}}</h4>
 </div>
 <div class="modal-body">
-	<p>{{detail.name}}</p>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"><strong>Description</strong></div>
+			<div class="col-md-10"><p>{{detail.description}}</p></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"><strong>Category</strong></div>
+			<div class="col-md-10"><p>{{detail.category[0].toUpperCase() + detail.category.substring(1, detail.category.length)}}</p></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"><strong ng-if="detail.authors.length != 0">Authors</strong></div>
+			<div class="col-md-10">
+				<table class="table table-hover table-responsive" ng-if="detail.authors.length != 0">
+					<thead>
+						<tr>
+							<td><strong>#</strong></td>
+							<td><strong>Name</strong></td>
+							<td><strong>Email</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="author in detail.authors">
+							<td>{{$index+1}}</td>
+							<td>{{author.name}}</td>
+							<td>{{author.email}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"><strong ng-if="detail.images.length != 0">Images</strong></div>
+			<div class="col-md-10">
+				<div class="media" ng-repeat="image in detail.images">
+					<!--ng-repeat="image in detail.images"-->
+					<a class="pull-left" href="#">
+						<img class="media-object" ng-src="{{image.path || '../images/site/image_placeholder.gif'}}" alt="...">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">{{image.title}}</h4>
+						<p class="media-body">{{image.caption}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 <div class="modal-footer">
-	<button class="btn btn-default">Cancel</button>
-	<button class="btn btn-info">Save</button>
+	<button class="btn btn-default" ng-click="cancel()">
+	    <span class="glyphicon glyphicon-remove"></span>
+		Close
+	</button>
+	<button class="btn btn-info" ng-click="modify()">
+		<span class="glyphicon glyphicon-edit"></span>
+		Modify
+	</button>
+	<button class="btn btn-danger" ng-click="remove()">
+		<span class="glyphicon glyphicon-trash"></span>
+		Delete
+	</button>
 </div>
