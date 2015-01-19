@@ -11,3 +11,11 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+.baseline {
+    vertical-align: baseline;
+}
+
+.full-width {
+    width: 100%;
+}

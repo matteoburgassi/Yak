@@ -52,6 +52,11 @@ var jsonSchema = {
 			type: "date",
 			required : false
 		},
+        year:{
+            title: "year",
+            type: "integer",
+            required: true
+        },
 		images : {
 			title : "images",
 			type : "array",
@@ -70,8 +75,10 @@ var documentSchema = mongoose.Schema({
 	],
 	date: { type: Date, default: Date.now },
 	category: String,
+    year: Number,
 	images: [
 		{
+            nomeFile: String,
 			title: String,
 			caption: String,
 			path: String
@@ -117,9 +124,12 @@ var documentsCollection = new CRUDCollection({
 	},
 
 	destroy : function(req, res, id, cb) {
-		Document.remove({name: id}, function(err){
+		Document.remove({name: decodeURI(id)}, function(err){
 			console.log("called delete", id);
-			if(err) return;
+			if(err) {
+                console.log(err);
+                return;
+            }
 			cb();
 		})
 	},
@@ -153,13 +163,12 @@ documentsCollection.extendedHandler = {
 
 documentsCollection.imagesHandler = {
 	DELETE : function(req, res) {
-		Document.remove({name: id}, function(err){
-			if(err)	console.log("an error occurred", err);
-		});
-		res.writeHead(
-			res.status.noContent()
-		);
-		res.end();
+        console.log("delete image", decodeURI(req.uri.child()));
+        var fs = require('fs');
+
+        fs.unlinkSync(decodeURI(__dirname + "/../static/images/" + req.uri.child()))
+        console.log('successfully deleted '+decodeURI(req.uri.child()));
+        res.end();
 	},
 	POST : function(req, res) {
 		console.log("called upload image");
@@ -171,10 +180,8 @@ documentsCollection.imagesHandler = {
 				return res.status.internalServerError(err);
 			}
 			return res.status.created(JSON.stringify(files));
-		});
-
-		return;
-
+        });
+        return;
 	}
 }
 

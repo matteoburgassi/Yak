@@ -1,7 +1,7 @@
 /**
  * Created by matteo on 08/08/14.
  */
-var frisby = require('/usr/lib/node_modules/frisby');
+var frisby = require('../node_modules/frisby');
 var FormData = require('form-data');
 var request = require('request');
 
@@ -154,6 +154,7 @@ function testDeleteADoc(indexFromZeroToNine) {
 			})
 			.toss()
 	}
+
 }
 
 function retrieveFilePath(headers) {

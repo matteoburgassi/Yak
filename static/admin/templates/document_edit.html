@@ -1,0 +1,108 @@
+<form class="form-horizontal" role="form">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">
+            <span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="sr-only">Close</span>
+        </button>
+        <div class="form-group">
+            <label class="col-sm-1" for="title"></label>
+            <div class="col-sm-11">
+                <input id="title" name="title" class="form-control input-lg" type="text" placeholder="Title" ng-model="dummy.name">
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="description" placeholder="Description" rows="10" ng-model="dummy.description"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="category" placeholder="category" ng-model="dummy.category" />
+                </div>
+                <label for="year" class="col-sm-2 control-label">Year</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="year" placeholder="2014" ng-model="dummy.year"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Authors</label>
+                <div class="col-sm-1 col-sm-offset-9"><button class="btn btn-default" ng-click="addAuthor()"><span class="text-info glyphicon glyphicon-plus"></span></button></div>
+            </div>
+            <ul class="list-unstyled" id="authors">
+                <li ng-repeat="item in dummy.authors" id="author{{$index}}">
+                    <div class="form-group"><label class="col-sm-2 control-label"></label>
+
+                        <div class="col-sm-5"><input type="text" class="form-control" name="name{{$index}}" id="name{{$index}}"
+                                                     placeholder="name" ng-model="item.name"></div>
+                        <div class="col-sm-4"><input type="email" class="form-control" name="email{{$index}}" id="email{{$index}}"
+                                                     placeholder="e-mail" ng-model="item.email"></div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-danger glyphicon glyphicon-minus"
+                                    ng-click="removeAuthor($index)"></button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Images</label>
+                <div class="col-sm-1 col-sm-offset-9"><button class="btn btn-default" onclick="$('#chooseFile').click()"><span class="text-info glyphicon glyphicon-plus"></span></button><input type="file" class="hidden" id="chooseFile" nv-file-select uploader="uploader"/></div>
+            </div>
+
+            <ul class="list-unstyled">
+
+                <li ng-repeat="item in dummy.images">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-3"><img ng-src="{{'../'+item.path || '../images/site/image_placeholder.gif'}}" alt="" style="height: 64px; width: 64px"/></div>
+                        <div class="col-sm-6"><span ng-bind="item.nomeFile"></span></div>
+                        <div class="col-sm-1"><button class="btn btn-danger glyphicon glyphicon-minus" ng-click="removeImage($index)"></button> </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-3"><input type="text" class="form-control" placeholder="title" ng-model="item.title"></div>
+                        <div class="col-sm-7"><input type="text" class="form-control" placeholder="caption" ng-model="item.caption"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled">
+
+                <li ng-repeat="item in uploader.queue">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-5"><span ng-bind="item.file.name"></span></div>
+                        <div class="col-sm-1 col-sm-offset-4"><button class="btn btn-danger glyphicon glyphicon-minus" ng-click="item.remove()"></button> </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-3"><input type="text" class="form-control" placeholder="title" ng-model="item.title"></div>
+                        <div class="col-sm-7"><input type="text" class="form-control" placeholder="caption" ng-model="item.caption"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar"  aria-valuemin="0" aria-valuemax="110" ng-style="{ 'width': uploader.progress + '%' }">
+                    <span class="sr-only">0% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-default" ng-click="reset()">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+            Cancel
+        </button><button class="btn btn-success" ng-click="save()">
+            <span class="glyphicon glyphicon-save"></span>
+            Save
+        </button><button class="btn btn-danger" ng-click="cancel()">
+            <span class="glyphicon glyphicon-remove"></span>
+            Close
+        </button>
+    </div>
+</form>

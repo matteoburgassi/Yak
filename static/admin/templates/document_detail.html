@@ -17,7 +17,9 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2"><strong>Category</strong></div>
-			<div class="col-md-10"><p>{{detail.category[0].toUpperCase() + detail.category.substring(1, detail.category.length)}}</p></div>
+			<div class="col-md-6"><p>{{detail.category[0].toUpperCase() + detail.category.substring(1, detail.category.length)}}</p></div>
+            <div class="col-md-2"><strong>Year</strong></div>
+			<div class="col-md-2"><p>{{detail.year}}</p></div>
 		</div>
 		<div class="row">
 			<div class="col-md-2"><strong ng-if="detail.authors.length != 0">Authors</strong></div>
@@ -45,12 +47,16 @@
 			<div class="col-md-10">
 				<div class="media" ng-repeat="image in detail.images">
 					<!--ng-repeat="image in detail.images"-->
-					<a class="pull-left" href="#">
-						<img class="media-object" ng-src="{{image.path || '../images/site/image_placeholder.gif'}}" alt="...">
+					<a class="pull-left" href="#" >
+						<img class="media-object" style="width: 64px; height: 64px" ng-src="{{'../'+image.path || '../images/site/image_placeholder.gif'}}" alt="...">
 					</a>
 					<div class="media-body">
 						<h4 class="media-heading">{{image.title}}</h4>
-						<p class="media-body">{{image.caption}}</p>
+                        <p class="media-body">
+                            <span>{{image.nomeFile}}</span></br>
+                            {{image.caption}}
+                        </p>
+
 					</div>
 				</div>
 			</div>
@@ -65,9 +71,9 @@
 	</button>
 	<button class="btn btn-info" ng-click="modify()">
 		<span class="glyphicon glyphicon-edit"></span>
-		Modify
+		Edit
 	</button>
-	<button class="btn btn-danger" ng-click="remove()">
+	<button class="btn btn-danger" ng-click="delete ()">
 		<span class="glyphicon glyphicon-trash"></span>
 		Delete
 	</button>

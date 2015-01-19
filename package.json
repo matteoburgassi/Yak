@@ -11,6 +11,12 @@
 		"form-data" : "0.1.4",
 		"parseurl" : "1.3.0"
 	},
+    "devDependencies":{
+        "grunt" : "*",
+        "jasmine-node" : "*",
+        "frisby" : "*",
+        "request" : "*"
+    },
 	"scripts": {
 		"start": "node js/server.js"
 	},
