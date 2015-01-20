@@ -3,7 +3,7 @@
 </header>
 <div class="row">
     <aside class="col-md-2">
-        <nav data-spy="affix" da>
+        <nav>
             <ul class="list-unstyled">
                 <li ng-class="menuClass('home')"><a href="/">profilo</a></li>
                 <li ng-class="menuClass('progetti')">
@@ -31,9 +31,9 @@
         </carousel>
     </section>
     <aside class="col-md-2">
-        <p class="text-uppercase">convitto_malles</p>
-        <p>concorso di idee <br> progetto partecipante</p>
-        <p class="text-justify">Nunquam imperium silva? òsagjk òsgkh aòsghaòsj òs àl kaàslgkhaàg lskgàsalkgh àlàlk hàlakh àlkh àl kghàasglh aàsgklh àalksg àalkh àakl àlkh àalskdh àlkah àalkfhaàlfkjaàlkjàadhlkjadàhk àlkh àlkd àdalk àlh àadkl h</p>
+        <p id="detailTitle" class="text-uppercase">{{projectDetail.name}}</p>
+        <p id="detailCategory">{{projectDetail.category}}</p>
+        <p class="text-justify" id="details" ng-style="setDetailHeight()">{{projectDetail.description}}</p>
     </aside>
 </div>
 <footer class="row">
@@ -43,10 +43,8 @@
     <section class="col-md-2">
         <p>
         <ul class="list-unstyled">
-            <li class="text-uppercase">progettisti</li>
-            <li>nicola scaramuzzi</li>
-            <li>fabio biagio salerno</li>
-            <li>in collaborazione con EXUP</li>
+            <li class="text-uppercase" ng-if="projectDetail">progettisti</li>
+            <li ng-repeat="author in projectDetail.authors"><a href="mailto:{{author.email}}">{{author.name}}</a></li>
         </ul>
         </p>
     </section>

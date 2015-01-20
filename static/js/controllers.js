@@ -8,19 +8,33 @@ qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state
     function($scope, $http, $location, $stateParams) {
         console.log("homeCtrl", $stateParams.params);
         $scope.params = $stateParams.params;
+        $scope.showLoader=function(toggle){
+            var loader=$('#loader');
+            if(toggle)
+                loader.fadeIn("slow");
+            else
+                loader.fadeOut("slow");
+        }
         if($scope.projects === null || $scope.projects===undefined){
             $http.get('/documents').success(function(data) {
                 $scope.projects = data._items;
                 $scope.menuData = createMenuData($scope.projects);
                 $scope.slideShow = createSlideShow($scope.params);
+                $scope.showLoader(false);
             });
         }else{
             $scope.slideShow = createSlideShow($scope.params);
+            $scope.showLoader(false);
         };
 
         $scope.setCarouselHeight = function(){
             return {
                 height: (($('#carousel').width())*9/16)+'px'
+            }
+        };
+        $scope.setDetailHeight = function(){
+            return {
+                height: ((($('#carousel').width())*9/16)-($('#detailCategory').height()+$('#detailTitle').height())-30)+'px'
             }
         };
 
@@ -97,6 +111,7 @@ qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state
                 console.log("year+name");
                 for(i=0; i<data.length; i++){
                     if(data[i].name==name){
+                        $scope.projectDetail = data[i];
                         for(var j=0; j<data[i].images.length; j++){
                             var image = data[i].images[j];
                             if(image!= null || image != undefined)
