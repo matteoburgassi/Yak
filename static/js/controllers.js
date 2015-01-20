@@ -7,17 +7,18 @@ var qayinControllers = angular.module('qayinControllers', [
 qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state',
     function($scope, $http, $location, $stateParams) {
         console.log("homeCtrl", $stateParams.params);
-
+        $scope.params = $stateParams.params;
         if($scope.projects === null || $scope.projects===undefined){
             $http.get('/documents').success(function(data) {
                 $scope.projects = data._items;
                 $scope.menuData = createMenuData($scope.projects);
-                $scope.slideShow = createSlideShow($stateParams.params);
+                $scope.slideShow = createSlideShow($scope.params);
             });
+        }else{
+            $scope.slideShow = createSlideShow($scope.params);
         };
 
         $scope.setCarouselHeight = function(){
-//            var res="'height': '"+(($('#carousel').width())*9/16)+"px'";
             return {
                 height: (($('#carousel').width())*9/16)+'px'
             }
@@ -65,15 +66,44 @@ qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state
             return result;
         };
 
-        var createSlideShow = function(params){
-            console.log("createSlideShow")
+        function createSlideShow(params){
+            console.log("createSlideShow", params);
+            var year = params.year;
+            var name = params.name;
             var data = $scope.projects;
             result=[];
-            if(params.length==0||params.length==null||params.length==undefined){
+            console.log("year:",year,"name: ", name,"params: ", params);
+            if((year==null || year==undefined) && (name == null||name==undefined)){
+                console.log("no params");
                 for(i=0; i<data.length; i++){
                     var image = data[i].images[0];
                     if(image!= null || image != undefined)
                         result.push(image);
+                }
+                return result;
+            }
+            if((year!=null||year!=undefined) && (name==null || name==undefined)){
+                console.log("only year");
+                for(i=0; i<data.length; i++){
+                    if(data[i].year==year){
+                        var image = data[i].images[0];
+                        if(image!= null || image != undefined)
+                            result.push(image);
+                    }
+                }
+                return result;
+            }
+            if(name!=null || name!=undefined){
+                console.log("year+name");
+                for(i=0; i<data.length; i++){
+                    if(data[i].name==name){
+                        for(var j=0; j<data[i].images.length; j++){
+                            var image = data[i].images[j];
+                            if(image!= null || image != undefined)
+                                result.push(image);
+
+                        }
+                    }
                 }
             }
 
