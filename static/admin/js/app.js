@@ -13,7 +13,7 @@ yakAdmin.config(
 				templateUrl:    "templates/document_list.html",
 				controller:     "DocumentListCtrl"
 			})
-            .state('add', {
+            .state('documentAdd', {
                 url:            "/documents/add",
                 templateUrl:    "templates/document_list.html",
                 controller:     "DocumentAddCtrl"
@@ -28,6 +28,26 @@ yakAdmin.config(
 				templateUrl:    "templates/document_list.html",
 				controller:     "DocumentEditCtrl"
 			})
+            .state('authors', {
+                url:            "/authors",
+                templateUrl:    "templates/authors_list.html",
+                controller:     "AuthorsListCtrl"
+            })
+            .state('authorAdd', {
+                url:            "/authors/add",
+                templateUrl:    "templates/authors_list.html",
+                controller:     "AuthorAddCtrl"
+            })
+            .state('authorDetail', {
+                url:            "/authors/:id",
+                templateUrl:    "templates/authors_list.html",
+                controller:     "AuthorDetailCtrl"
+            })
+            .state('authorEdit', {
+                url:            "/authors/edit/:id",
+                templateUrl:    "templates/authors_list.html",
+                controller:     "AuthorEditCtrl"
+            })
 
 	}
 )

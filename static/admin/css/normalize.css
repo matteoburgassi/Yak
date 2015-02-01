@@ -1,6 +1,9 @@
 section.navbar {
   margin-top: 90px;
 }
+section.navbar .nav-tabs{
+    padding-top: 5px;
+}
 .navbar-inverse-header {
   padding-top: 20px;
   color: #FFF;
@@ -18,4 +21,9 @@ body {
 
 .full-width {
     width: 100%;
+}
+
+.list-inline li{
+    padding-left: 16px;
+    padding-right: 16px;
 }

@@ -1,0 +1,50 @@
+<section class="navbar navbar-fixed-top">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li><a href="/admin/#/documents">Projects</a></li>
+            <li class="active">
+                <a href="/admin/#/authors">Authors</a>
+            </li>
+        </ul>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-form navbar-right">
+                <div class="form-group pull-right">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                        <input class="form-control" type="text" ng-model="query" placeholder="Search">
+                    </div>
+                </div>
+            </nav>
+            <a class="pull-right btn btn-default navbar-btn" href="#/authors/add">
+                <span class="text-info glyphicon glyphicon-plus"></span></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-responsive">
+                <thead>
+                <tr>
+                    <td><h3>#</h3></td>
+                    <td><h3>Name</h3></td>
+                    <td><h3>Second Name</h3></td>
+                    <td><h3>Email</h3></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="pointer" ng-repeat="author in authors | filter : query" ng-click="openDetail(author.email)">
+                    <td>{{$index+1}}</td>
+                    <td>{{author.name}}</td>
+                    <td>{{author.secondName}}</td>
+                    <td>{{author.email}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

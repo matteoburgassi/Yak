@@ -1,0 +1,214 @@
+<form class="form-horizontal" role="form">
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">
+        <span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span>
+        <span class="sr-only">Close</span>
+    </button>
+    <div class="form-group">
+        <div class="col-sm-5">
+            <input id="name" name="name" class="form-control input-lg" type="text" placeholder="Name"
+                   ng-model="dummy.name">
+        </div>
+        <div class="col-sm-6">
+            <input id="secondName" name="secondName" class="form-control input-lg" type="text"
+                   placeholder="Second Name" ng-model="dummy.secondName">
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" placeholder="e-mail" ng-model="dummy.email"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">Address</label>
+
+            <div class="col-sm-5">
+                <textarea class="form-control" id="address" placeholder="Via Pasolini, 15
+57021 Venturina (Livorno)
+Italy" rows="5" ng-model="dummy.address"/>
+            </div>
+            <label class="col-sm-2 control-label">Photo</label>
+            <div class="col-sm-3" ng-repeat="image in uploader.queue">
+                <div ng-show="uploader.isHTML5" ng-thumb="{ file: image._file, height: 150, width: 150 }"></div>
+            </div>
+            <input type="file" class="hidden" id="chooseFile" nv-file-select uploader="uploader" />
+            <div class="col-sm-3" id="imgAdder">
+                <img class="img-thumbnail pull-right"  style="cursor: pointer; height: 150px" onclick="$('#chooseFile').click()" ng-src="../{{dummy.photo[0].path}}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Phone</label>
+
+            <div class="col-sm-1 col-sm-offset-9">
+                <button class="btn btn-default" ng-click="addPhone()"><span
+                        class="text-info glyphicon glyphicon-plus"></span></button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+
+            <div class="col-sm-10">
+                <ul class="list-unstyled list-inline" id="phones">
+                    <li ng-repeat="item in dummy.phone">
+                        <div class="form-group form-inline">
+                            <input type="phone" class="form-control" name="number{{$index}}" id="number{{$index}}"
+                                   placeholder="3495596815" ng-model="item.number">
+                            <button class="btn btn-danger glyphicon glyphicon-minus"
+                                    ng-click="removePhone($index)"></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">School</label>
+
+            <div class="col-sm-1 col-sm-offset-9">
+                <button class="btn btn-default" ng-click="addSchool()"><span
+                        class="text-info glyphicon glyphicon-plus"></span></button>
+            </div>
+        </div>
+        <ul class="list-unstyled" id="school">
+            <li ng-repeat="item in dummy.school" id="school{{$index}}">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" ></label>
+                    <label class="col-sm-1 control-label" for="start{{$index}}">from:</label>
+
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="start{{$index}}"
+                                   id="start{{$index}}" datepicker-popup="{{format}}" ng-model="item.start.date"
+                                   is-open="item.start.opened" min-date="minDate" max-date="'2015-06-22'"
+                                   datepicker-options="dateOptions"
+                                   ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event, $index, 'start', 's')"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <label class="col-sm-1 control-label" for="end{{$index}}">to:</label>
+
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="end{{$index}}" id="end{{$index}}"
+                                   datepicker-popup="{{format}}" ng-model="item.end.date" is-open="item.end.opened"
+                                   min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions"
+                                   ng-required="true" close-text="Close"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event, $index, 'end','s')"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-danger glyphicon glyphicon-minus"
+                                ng-click="removeSchool($index)"></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-10">
+                        <label for="description">description:</label>
+                        <textarea name="description" class="form-control" id="description"
+                                  placeholder="Description" rows="3" ng-model="item.description"/>
+                    </div>
+
+                </div>
+
+            </li>
+        </ul>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Experiences</label>
+
+            <div class="col-sm-1 col-sm-offset-9">
+                <button class="btn btn-default" ng-click="addExperience()"><span
+                        class="text-info glyphicon glyphicon-plus"></span></button>
+            </div>
+        </div>
+        <ul class="list-unstyled" id="authors">
+            <li ng-repeat="item in dummy.experiences" id="experiences{{$index}}">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" ></label>
+                    <label class="col-sm-1 control-label" for="start{{$index}}">from:</label>
+
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="start{{$index}}"
+                                   id="exstart{{$index}}" datepicker-popup="{{format}}" ng-model="item.start.date"
+                                   is-open="item.start.opened" min-date="minDate" max-date="'2015-06-22'"
+                                   datepicker-options="dateOptions"
+                                   ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event, $index, 'start', 'e')"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <label class="col-sm-1 control-label" for="end{{$index}}">to:</label>
+
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="end{{$index}}" id="exend{{$index}}"
+                                   datepicker-popup="{{format}}" ng-model="item.end.date" is-open="item.end.opened"
+                                   min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions"
+                                   ng-required="true" close-text="Close"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event, $index, 'end','e')"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-danger glyphicon glyphicon-minus"
+                                ng-click="removeExperience($index)"></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-10">
+                        <label for="description">description:</label>
+                        <textarea name="description" class="form-control" id="exdescription"
+                                  placeholder="Description" rows="3" ng-model="item.description"/>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
+                 aria-valuemax="110" ng-style="{ 'width': uploader.progress + '%' }">
+                <span class="sr-only">0% Complete</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="reset()">
+        <span class="glyphicon glyphicon-ban-circle"></span>
+        Cancel
+    </button>
+    <button class="btn btn-success" ng-click="save()">
+        <span class="glyphicon glyphicon-save"></span>
+        Save
+    </button>
+    <button class="btn btn-danger" ng-click="cancel()">
+        <span class="glyphicon glyphicon-remove"></span>
+        Close
+    </button>
+</div>
+</form>

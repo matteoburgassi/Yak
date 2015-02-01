@@ -1,32 +1,29 @@
-<section class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<span class="navbar-brand">Documents</span>
-			</div>
-			<div class="col-md-4">
-				<div class="navbar-form navbar-right">
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon">
-								<span class="glyphicon glyphicon-search"></span>
-							</div>
-							<input class="form-control" type="text" ng-model="query" placeholder="Search">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<section class="navbar navbar-fixed-top">
+    <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="/admin/#/documents">Projects</a></li>
+                <li>
+                    <a href="/admin/#/authors">Authors</a>
+                </li>
+            </ul>
+    </div>
 </section>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<nav class="navbar">
-				<a class="pull-right btn btn-default navbar-btn" href="#/documents/add">
-					<span class="text-info glyphicon glyphicon-plus"></span></a>
+			<nav class="navbar navbar-form navbar-right">
+                <div class="form-group pull-right">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                        <input class="form-control" type="text" ng-model="query" placeholder="Search">
+                    </div>
+                </div>
 			</nav>
-		</div>
+            <a class="pull-right btn btn-default navbar-btn" href="#/documents/add">
+                <span class="text-info glyphicon glyphicon-plus"></span></a>
+        </div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
