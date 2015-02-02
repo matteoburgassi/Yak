@@ -114,7 +114,7 @@ var cvSchema = {
 }
 
 var documentSchema = mongoose.Schema({
-	name: {type: String, unique: true},
+	name: {type: String, unique: true, required: true},
 	description: String,
 	authors: [
 		{
@@ -146,7 +146,7 @@ var cvMongooseSchema = mongoose.Schema({
     ],
     name: {type: String},
     secondName: {type: String},
-    email: {type: String, unique: true},
+    email: {type: String, unique: true, required: true},
     address: {type: String},
     phone: [
         {

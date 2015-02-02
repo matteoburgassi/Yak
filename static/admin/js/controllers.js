@@ -143,6 +143,10 @@ yakAdminControllers.controller('DocumentAddCtrl', ['$scope', '$http', '$statePar
 
                 $scope.save = function(){
                     console.log("save() called");
+                    if($scope.dummy.name == "" || $scope.dummy.name == undefined){
+                        alert("name can't be empty!!!")
+                        return;
+                    }
                     if(uploader.queue.length==0){
                         uploader.onCompleteAll();
                         return;
@@ -238,6 +242,10 @@ yakAdminControllers.controller('DocumentEditCtrl', ['$scope', '$http', '$statePa
 
                     $scope.save = function () {
                         console.log("save() called");
+                        if($scope.dummy.name == "" || $scope.dummy.name == undefined){
+                            alert("name can't be empty!!!")
+                            return;
+                        }
                         if(uploader.queue.length==0){
                             uploader.onCompleteAll();
                             return;
@@ -477,7 +485,7 @@ yakAdminControllers.controller('AuthorAddCtrl', ['$scope', '$http', '$stateParam
 
                 $scope.save = function(){
                     console.log("save() called", $scope.dummy.email);
-                    if($scope.dummy.email==="") {
+                    if($scope.dummy.email==="" || $scope.dummy.email===undefined) {
                         alert("email cannot be empty!!!");
                         return;
                     }
@@ -666,7 +674,7 @@ yakAdminControllers.controller('AuthorEditCtrl', ['$scope', '$http', '$statePara
 
                     $scope.save = function () {
                         console.log("save() called", $scope.dummy.email);
-                        if ($scope.dummy.email === "") {
+                        if($scope.dummy.email==="" || $scope.dummy.email===undefined) {
                             alert("email cannot be empty!!!");
                             return;
                         }
