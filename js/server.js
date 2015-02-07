@@ -84,6 +84,11 @@ var cvSchema = {
             type : "string",
             required : true
         },
+        role:{
+            title: "role",
+            type: "string",
+            required: false
+        },
         email:{
             title : "email",
             type : "string",
@@ -146,6 +151,7 @@ var cvMongooseSchema = mongoose.Schema({
     ],
     name: {type: String},
     secondName: {type: String},
+    role: {type: String},
     email: {type: String, unique: true, required: true},
     address: {type: String},
     phone: [
@@ -312,6 +318,7 @@ var cvCollection = new CRUDCollection({
             {
                 name: obj.name,
                 secondName: obj.secondName,
+                role: obj.role,
                 email: obj.email,
                 photo: obj.photo,
                 address: obj.address,

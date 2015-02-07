@@ -1,0 +1,56 @@
+<header class="row">
+    <img src="/images/site/qayin_architettura_trasp.png" alt="logo"/>
+</header>
+<div class="row">
+    <aside class="col-md-2">
+        <nav>
+            <ul class="list-unstyled">
+                <li ng-class="menuClass('home')"><a href="/">profilo</a></li>
+                <li ng-class="menuClass('progetti')">
+                    <a href="/#/progetti">progetti</a>
+                </li>
+                <li class="selected">
+                    <a href="/#/team">team</a>
+                    <ul class="list-unstyled">
+                        <li ng-repeat="designer in designers"><a href="/#/team/{{designer.email}}">{{designer.name}} {{designer.secondName}}</a></li>
+                    </ul>
+                </li>
+                <li ng-class="menuClass('link')"><a href="/#/link">link</a></li>
+                <li ng-class="menuClass('contatti')"><a href="/#/contatti">contatti</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <section class="col-md-8" id="carousel" >
+        <carousel interval="4000" ng-if="!designer">
+            <slide class="item" ng-repeat="slide in slideShow">
+                <img ng-src="{{slide.path}}" alt="{{slide.name}}" style="margin: auto" ng-style="setCarouselHeight()">
+            </slide>
+        </carousel>
+    </section>
+    <aside class="col-md-2">
+        <p id="detailTitle" class="text-uppercase ellipsize"><em>{{designer.name}} {{designer.secondName}}<span ng-if="designer.role">_</span></em><span class="text-lowercase">{{designer.role}}</span></p>
+        <p id="detailCategory"></p>
+        <div id="details" ng-if="designer" ng-style="setDetailHeight()">
+            <p ng-if="designer.summary"><strong class="text-uppercase">Su di me</strong></p>
+            <p>{{designer.summary}}</p>
+            <p ng-if="designer.school.length!=0"><em>istruzione</em></p>
+            <div ng-repeat="row in designer.school">
+                <p><em>dal: </em>{{row.start.date | date: 'dd/MM/yyyy'}} <em>al: </em>{{row.end.date | date: 'dd/MM/yyyy'}}</p>
+                <p>{{row.description}}</p>
+            </div>
+            <p ng-if="designer.experiences.length!=0"><em>esperienze</em></p>
+            <div ng-repeat="experience in designer.experiences">
+                <p><em>dal: </em>{{experience.start.date | date: 'dd/MM/yyyy'}} <em>al: </em>{{experience.end.date | date: 'dd/MM/yyyy'}}</p>
+                <p>{{experience.description}}</p>
+            </div>
+        </div>
+    </aside>
+</div>
+<footer class="row">
+    <aside class="col-md-2 social"><a href="https://www.facebook.com/qayinarchitettura" class="h2 facebook-link" ><span class="fa fa-facebook-square"></span></a>&nbsp;<a href="http://it.pinterest.com/qayin/" class="h2 pinterest-link"><span class="fa fa-pinterest-square"></span> </a></aside>
+    <section class="col-md-8">
+    </section>
+    <section class="col-md-2">
+        <img id="designerPhoto" class="thumbnail" ng-src="{{designer.photo[0].path}}" src="" />
+    </section>
+</footer>

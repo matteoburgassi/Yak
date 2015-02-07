@@ -3,7 +3,7 @@
         <span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span>
         <span class="sr-only">Close</span>
     </button>
-    <h4 class="modal-title">{{detail.name}} {{detail.secondName}}</h4>
+    <h4 class="modal-title">{{detail.name}} {{detail.secondName}}<span ng-if="detail.role">, </span> <span class="h5">{{detail.role}}</span></h4>
 </div>
 <div class="modal-body">
     <div class="container-fluid">

@@ -26,6 +26,11 @@ a:hover, a:focus{
     -o-transition: color 1s;
     transition: color 1s;
 }
+em{
+    color: #000000;
+    font-style: normal;
+
+}
 
 header{
     margin-top: 50px;
@@ -96,8 +101,17 @@ nav li.visible>ul, nav li.selected>ul{
     background-repeat: no-repeat;
 }
 
+.ellipsize{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#designerPhoto{
+    height: 100px;
+}
+
 aside #details{
-    overflow-y: scroll;
+    overflow-y: auto;;
     overflow-x: hidden;
 }
 

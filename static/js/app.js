@@ -30,8 +30,13 @@ qayin.config(
             })
             .state('team', {
                 url:            "/team",
-                templateUrl:    "templates/home.html",
-                controller:     "homeCtrl"
+                templateUrl:    "templates/team.html",
+                controller:     "designersCtrl"
+            })
+            .state('designer', {
+                url:            "/team/:email",
+                templateUrl:    "templates/team.html",
+                controller:     "designersDetailCtrl"
             })
             .state('link', {
                 url:            "/link",
