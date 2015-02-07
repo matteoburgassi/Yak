@@ -11,7 +11,7 @@ http = require('http'),
 	util = require('util');
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
 	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "nodejsprod");
-	console.log("connect to mongodb");
+	console.log("connect to mongodb url: ", process.env.OPENSHIFT_MONGODB_DB_URL);
 } else {
 	mongoose.connect('mongodb://0.0.0.0/YakTest');
 }
