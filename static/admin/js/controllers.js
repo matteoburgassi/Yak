@@ -131,7 +131,7 @@ yakAdminControllers.controller('DocumentAddCtrl', ['$scope', '$http', '$statePar
                             "nomeFile": fileItem.file.name,
                             "title": fileItem.title,
                             "caption": fileItem.caption,
-                            "path": "images/" + name
+                            "path": "data/" + name
                         }
                     );
                     console.log("file", name, "completed");
@@ -226,7 +226,7 @@ yakAdminControllers.controller('DocumentEditCtrl', ['$scope', '$http', '$statePa
                                 "nomeFile": fileItem.file.name,
                                 "title": fileItem.title,
                                 "caption": fileItem.caption,
-                                "path": "images/" + name
+                                "path": "data/" + name
                             }
                         );
                         console.log("file", name, "completed");
@@ -466,7 +466,7 @@ yakAdminControllers.controller('AuthorAddCtrl', ['$scope', '$http', '$stateParam
                     $scope.dummy.photo.push(
                         {
                             "nomeFile": fileItem.file.name,
-                            "path": "images/" + name
+                            "path": "data/" + name
                         }
                     );
                     console.log("file", name, "completed");
@@ -647,7 +647,7 @@ yakAdminControllers.controller('AuthorEditCtrl', ['$scope', '$http', '$statePara
                         $scope.dummy.photo.push(
                             {
                                 "nomeFile": fileItem.file.name,
-                                "path": "images/" + name
+                                "path": "data/" + name
                             }
                         );
                         console.log("file", name, "completed");
