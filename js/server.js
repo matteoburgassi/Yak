@@ -5,10 +5,15 @@ console.log("starting server");
 var Percolator = require('percolator').Percolator;
 var CRUDCollection = require('percolator').CRUDCollection;
 var mongoose = require('mongoose');
+
 var fs = require('fs');
 var multiparty = require('multiparty')
-http = require('http'),
-	util = require('util');
+    http = require('http'),
+    util = require('util'),
+    static = require('serve-static');
+
+var STATICDIR = __dirname + "/../static/data";
+
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
 	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "nodejsprod");
 	console.log("connect to mongodb url: ", process.env.OPENSHIFT_MONGODB_DB_URL);
@@ -270,14 +275,14 @@ documentsCollection.imagesHandler = {
         console.log("delete image", decodeURI(req.uri.child()));
         var fs = require('fs');
 
-        fs.unlinkSync(decodeURI(__dirname + "/../static/images/" + req.uri.child()))
+        fs.unlinkSync(decodeURI(STATICDIR + req.uri.child()))
         console.log('successfully deleted '+decodeURI(req.uri.child()));
         res.end();
 	},
 	POST : function(req, res) {
 		console.log("called upload image");
 		var form = new multiparty.Form();
-		form.uploadDir = __dirname + "/../static/images";
+		form.uploadDir = STATICDIR;
 
 		form.parse(req, function (err, fields, files) {
 			if (err){
@@ -375,14 +380,15 @@ cvCollection.imagesHandler = {
         console.log("delete image", decodeURI(req.uri.child()));
         var fs = require('fs');
 
-        fs.unlinkSync(decodeURI(__dirname + "/../static/images/" + req.uri.child()))
+        fs.unlinkSync(decodeURI(STATICDIR + req.uri.child()))
         console.log('successfully deleted '+decodeURI(req.uri.child()));
         res.end();
     },
     POST : function(req, res) {
         console.log("called upload image");
         var form = new multiparty.Form();
-        form.uploadDir = __dirname + "/../static/images";
+
+        form.uploadDir = STATICDIR;
 
         form.parse(req, function (err, fields, files) {
             if (err){
