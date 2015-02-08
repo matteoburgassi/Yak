@@ -12,7 +12,7 @@
                 <li class="selected">
                     <a href="/#/team">team</a>
                     <ul class="list-unstyled">
-                        <li ng-repeat="designer in designers"><a href="/#/team/{{designer.email}}">{{designer.name}} {{designer.secondName}}</a></li>
+                        <li ng-repeat="designer in designers" ng-class="menuClass('team/'+designer.email)"><a href="/#/team/{{designer.email}}">{{designer.name}} {{designer.secondName}}</a></li>
                     </ul>
                 </li>
                 <li ng-class="menuClass('link')"><a href="/#/link">link</a></li>
