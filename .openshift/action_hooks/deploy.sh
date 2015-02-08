@@ -1,0 +1,1 @@
+ln -sf $OPENSHIFT_DATA_DIR /static/data
