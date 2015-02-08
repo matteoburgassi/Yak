@@ -51,6 +51,6 @@
     <section class="col-md-8">
     </section>
     <section class="col-md-2">
-        <img id="designerPhoto" class="thumbnail" ng-src="{{designer.photo[0].path || 'http://placehold.it/100X100'}}" src="" />
+        <img ng-if="designer" id="designerPhoto" class="thumbnail" ng-src="{{designer.photo[0].path || 'http://placehold.it/100X100'}}" src="" />
     </section>
 </footer>
