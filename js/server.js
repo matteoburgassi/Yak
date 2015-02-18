@@ -6,6 +6,15 @@ var Percolator = require('percolator').Percolator;
 var CRUDCollection = require('percolator').CRUDCollection;
 var mongoose = require('mongoose');
 
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'matteoburgassi@gmail.com',
+        pass: '696WDxk585QSzj'
+    }
+});
+
 var fs = require('fs');
 var multiparty = require('multiparty')
     http = require('http'),
@@ -123,6 +132,11 @@ var cvSchema = {
     }
 }
 
+var pageSchema = mongoose.Schema({
+    name: {type: String, unique: true, required: true},
+    html: {type: String}
+});
+
 var documentSchema = mongoose.Schema({
 	name: {type: String, unique: true, required: true},
 	description: String,
@@ -195,6 +209,7 @@ var cvMongooseSchema = mongoose.Schema({
 
 var Document = mongoose.model('document', documentSchema);
 var Cv = mongoose.model('cv', cvMongooseSchema);
+var Page = mongoose.model('page', pageSchema);
 
 
 var documentsCollection = new CRUDCollection({
@@ -400,6 +415,60 @@ cvCollection.imagesHandler = {
     }
 }
 
+var mailer = {
+    POST : function(req, res){
+        req.onJson(function(err, obj){
+            if(err){
+                return res.status.badRequest("not a json");
+            }
+            obj.to = transporter.auth.user;
+            transporter.sendMail(obj, function(){
+                res.object({"result" : "sended"}).send();
+
+            });
+        });
+        /*{
+         from: 'sender@address',
+         to: 'matteoburgassi@gmail.com',
+         subject: 'hello',
+         text: 'hello world!'
+         }*/
+
+    }
+}
+var links = {
+    POST : function(req, res){
+        req.onJson(function(err, obj){
+            if(err){
+                return res.status.badRequest("not a json");
+            }
+            Page.update({name: "links"}, obj,function(err, numberAffected, raw) {
+                if (err) return res.status.internalServerError("error");
+                console.log('The number of updated documents was %d', numberAffected);
+                console.log('The raw response from Mongo was ', raw);
+            });
+
+        });
+    }
+}
+
+var profile = {
+    POST : function(req, res){
+        req.onJson(function(err, obj){
+            if(err){
+                return res.status.badRequest("not a json");
+            }
+            Page.update({name: "profilo"}, obj,function(err, numberAffected, raw) {
+                if (err) return res.status.internalServerError("error");
+                console.log('The number of updated documents was %d', numberAffected);
+                console.log('The raw response from Mongo was ', raw);
+            });
+
+
+        });
+    }
+}
+
 
 
 
@@ -422,6 +491,10 @@ server.route('/designers',                      cvCollection.handler);
 server.route('/designers/:id',                  cvCollection.wildcard);
 server.route('/designers/images/upload/:email', cvCollection.imagesHandler);
 server.route('/designers/testUtil/destroy',     cvCollection.extendedHandler);
+server.route('/contacts', mailer);
+server.route('/pages/links', links);
+server.route('/pages/profilo', profile);
+
 
 server.listen(function(){
 	console.log(server.server.router.routes);

@@ -1,7 +1,7 @@
 /**
  * Created by matteo on 27/08/14.
  */
-var yakAdminControllers = angular.module('yakAdminControllers', ['ui.bootstrap', 'angularFileUpload']);
+var yakAdminControllers = angular.module('yakAdminControllers', ['ui.bootstrap', 'angularFileUpload', 'ngWig']);
 
 yakAdminControllers.controller('DocumentListCtrl', ['$scope', '$http', '$location',
 	function($scope, $http) {
@@ -772,4 +772,12 @@ yakAdminControllers.controller('AuthorEditCtrl', ['$scope', '$http', '$statePara
     }
 ]);
 
+
+yakAdminControllers.controller('ProfileCtrl', ['$scope', '$http', '$location',
+    function ($scope, $http) {}
+]);
+
+yakAdminControllers.controller('LinksCtrl', ['$scope', '$http', '$location',
+    function ($scope, $http) {}
+]);
 

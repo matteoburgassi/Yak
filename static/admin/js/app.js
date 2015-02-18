@@ -1,7 +1,8 @@
 var yakAdmin = angular.module('yakAdmin', [
 	'ui.router',
     'angular.filter',
-	'yakAdminControllers'
+	'yakAdminControllers',
+    'ngWig'
 ]);
 
 yakAdmin.config(
@@ -47,6 +48,16 @@ yakAdmin.config(
                 url:            "/authors/edit/:id",
                 templateUrl:    "templates/authors_list.html",
                 controller:     "AuthorEditCtrl"
+            })
+            .state('profile', {
+                url:            "/profile",
+                templateUrl:    "templates/profile.html",
+                controller:     "ProfileCtrl"
+            })
+            .state('links', {
+                url:            "/links",
+                templateUrl:    "templates/links.html",
+                controller:     "LinksCtrl"
             })
 
 	}
