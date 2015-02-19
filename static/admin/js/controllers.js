@@ -780,6 +780,12 @@ yakAdminControllers.controller('ProfileCtrl', ['$scope', '$http', '$location',
         });
         $scope.save=function(){
             console.log("save");
+            json = {
+                html: $scope.content
+            };
+            $http.post('../pages/profilo', json).success(function(data, status){
+                alert("data saved")
+            })
         };
         $scope.cancel=function(){
             console.log("cancel");
@@ -795,7 +801,12 @@ yakAdminControllers.controller('LinksCtrl', ['$scope', '$http', '$location',
         });
         $scope.save=function(){
             console.log("save");
-            $http.post()
+            json = {
+                html: $scope.content
+            };
+            $http.post('../pages/links', json).success(function(data, status){
+                alert("data saved")
+            })
         };
         $scope.cancel=function(){
             console.log("cancel");
