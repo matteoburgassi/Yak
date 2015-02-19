@@ -442,17 +442,19 @@ var links = {
             if(err){
                 return res.status.badRequest("not a json");
             }
-            Page.update({name: "links"}, obj,function(err, numberAffected, raw) {
+            Page.update({name: "links"}, obj, {upsert: true}, function(err, numberAffected, raw) {
                 if (err) return res.status.internalServerError("error");
                 console.log('The number of updated documents was %d', numberAffected);
                 console.log('The raw response from Mongo was ', raw);
+                return res.object({message : 'saved!'}).send();
             });
 
         });
     },
     GET : function(req, res){
-        //cercare i dati e ritornarli
-    }
+        Page.findOne({name: "links"}, function(err, obj){
+            return res.object(obj).send();
+        });    }
 }
 
 var profile = {
@@ -461,17 +463,20 @@ var profile = {
             if(err){
                 return res.status.badRequest("not a json");
             }
-            Page.update({name: "profilo"}, obj,function(err, numberAffected, raw) {
+            Page.update({name: "profilo"}, obj, {upsert: true}, function(err, numberAffected, raw) {
                 if (err) return res.status.internalServerError("error");
                 console.log('The number of updated documents was %d', numberAffected);
                 console.log('The raw response from Mongo was ', raw);
+                return res.object({message : 'saved!'}).send();
             });
 
 
         });
     },
     GET : function(req, res){
-        //cercare i dati e ritornarli
+        Page.findOne({name: "profilo"}, function(err, obj){
+            return res.object(obj).send();
+        });
     }
 }
 

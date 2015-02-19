@@ -776,7 +776,9 @@ yakAdminControllers.controller('AuthorEditCtrl', ['$scope', '$http', '$statePara
 yakAdminControllers.controller('ProfileCtrl', ['$scope', '$http', '$location',
     function ($scope, $http) {
         $http.get('../pages/profilo').success(function (data) {
-            $scope.content = data;
+            console.log("load profilo html");
+            $scope.content = data.html;
+            $(".nw-editor").css("height", "auto");
         });
         $scope.save=function(){
             console.log("save");
@@ -784,7 +786,8 @@ yakAdminControllers.controller('ProfileCtrl', ['$scope', '$http', '$location',
                 html: $scope.content
             };
             $http.post('../pages/profilo', json).success(function(data, status){
-                alert("data saved")
+                console.log("ok");
+                alert("data saved");
             })
         };
         $scope.cancel=function(){
@@ -797,7 +800,9 @@ yakAdminControllers.controller('ProfileCtrl', ['$scope', '$http', '$location',
 yakAdminControllers.controller('LinksCtrl', ['$scope', '$http', '$location',
     function ($scope, $http) {
         $http.get('../pages/links').success(function (data) {
-            $scope.content = data;
+            console.log("load links html");
+            $scope.content = data.html;
+            $(".nw-editor").css("height", "auto");
         });
         $scope.save=function(){
             console.log("save");
@@ -805,7 +810,8 @@ yakAdminControllers.controller('LinksCtrl', ['$scope', '$http', '$location',
                 html: $scope.content
             };
             $http.post('../pages/links', json).success(function(data, status){
-                alert("data saved")
+                console.log("ok");
+                alert("data saved");
             })
         };
         $scope.cancel=function(){
