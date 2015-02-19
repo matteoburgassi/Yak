@@ -13,12 +13,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <textarea ng-wig="content"></textarea>
+            <textarea ng-wig="content" class="editor"></textarea>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-
+            <button class="btn btn-success pull-right button-spacer" ng-click="save()">
+                <span class="glyphicon glyphicon-save"></span>
+                Save
+            </button>
+            <button class="btn btn-default pull-right button-spacer" ng-click="cancel()">
+                <span class="glyphicon glyphicon-ban-circle"></span>
+                Cancel
+            </button>
         </div>
     </div>
 </div>

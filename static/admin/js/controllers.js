@@ -774,10 +774,33 @@ yakAdminControllers.controller('AuthorEditCtrl', ['$scope', '$http', '$statePara
 
 
 yakAdminControllers.controller('ProfileCtrl', ['$scope', '$http', '$location',
-    function ($scope, $http) {}
+    function ($scope, $http) {
+        $http.get('../pages/profilo').success(function (data) {
+            $scope.content = data;
+        });
+        $scope.save=function(){
+            console.log("save");
+        };
+        $scope.cancel=function(){
+            console.log("cancel");
+            $scope.content = "";
+        };
+    }
 ]);
 
 yakAdminControllers.controller('LinksCtrl', ['$scope', '$http', '$location',
-    function ($scope, $http) {}
+    function ($scope, $http) {
+        $http.get('../pages/links').success(function (data) {
+            $scope.content = data;
+        });
+        $scope.save=function(){
+            console.log("save");
+            $http.post()
+        };
+        $scope.cancel=function(){
+            console.log("cancel");
+            $scope.content = "";
+        };
+    }
 ]);
 

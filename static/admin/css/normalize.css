@@ -27,3 +27,12 @@ body {
     padding-left: 16px;
     padding-right: 16px;
 }
+
+.editor {
+    min-height: 400px;
+    margin: 20px 0 0 20px;
+}
+
+.button-spacer{
+    margin-left: 10px;
+}

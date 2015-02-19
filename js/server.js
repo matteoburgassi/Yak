@@ -449,6 +449,9 @@ var links = {
             });
 
         });
+    },
+    GET : function(req, res){
+        //cercare i dati e ritornarli
     }
 }
 
@@ -466,6 +469,9 @@ var profile = {
 
 
         });
+    },
+    GET : function(req, res){
+        //cercare i dati e ritornarli
     }
 }
 
