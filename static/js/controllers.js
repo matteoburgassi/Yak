@@ -384,3 +384,21 @@ qayinControllers.controller('designersDetailCtrl', ['$scope', '$http', '$locatio
         }
     }
 ]);
+
+qayinControllers.controller('profileCtrl', ['$scope', '$http',
+    function($scope, $http) {
+        $http.get('/pages/profilo').success(function (data) {
+            console.log("load profile html");
+            $scope.content = data.html;
+        });
+    }
+]);
+
+qayinControllers.controller('linkCtrl', ['$scope', '$http',
+    function($scope, $http) {
+        $http.get('/pages/links').success(function (data) {
+            console.log("load profile html");
+            $scope.content = data.html;
+        });
+    }
+]);

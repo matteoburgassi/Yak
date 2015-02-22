@@ -5,7 +5,7 @@
     <aside class="col-md-2">
         <nav>
             <ul class="list-unstyled">
-                <li ng-class="menuClass('home')"><a href="/#/profilo">profilo</a></li>
+                <li ng-class="menuClass('profilo')"><a href="/#/profilo">profilo</a></li>
                 <li ng-class="menuClass('progetti')">
                     <a href="/#/progetti">progetti</a>
                     <ul class="list-unstyled" ng-repeat="item in menuData | orderBy: 'year': true">
@@ -31,9 +31,7 @@
         </carousel>
     </section>
     <aside class="col-md-2">
-        <p id="detailTitle" class="text-uppercase">{{projectDetail.name}}</p>
-        <p id="detailCategory">{{projectDetail.category}}</p>
-        <p class="text-justify" id="details" ng-style="setDetailHeight()">{{projectDetail.description}}</p>
+        <p ng-bind-html="content"></p>
     </aside>
 </div>
 <footer class="row">
