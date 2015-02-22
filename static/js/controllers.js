@@ -410,17 +410,22 @@ qayinControllers.controller('contactCtrl', ['$scope', '$http',
 
 qayinControllers.controller('contactForm', ['$scope', '$http',
     function($scope, $http) {
-
+        $scope.done=false;
         $scope.invia = function(){
             console.log("invia")
-            var email = {
-                from: $scope.form.email.$viewValue,
-                subject: 'richiesta da sito QayinArchitettura',
-                text: "telefono: " + $scope.form.tel.$viewValue +"\n"+ $scope.form.content.$viewValue
+            if($scope.form.$valid){
+                var email = {
+                    from: $scope.form.email.$viewValue,
+                    subject: 'richiesta da sito QayinArchitettura',
+                    text: "telefono: " + $scope.form.tel.$viewValue +"\n"+ $scope.form.content.$viewValue
+                }
+                $http.post('/contacts', email).success(function(data){
+                    console.log("success");
+                    $scope.done=true;
+                    $scope.form.$setPristine();
+                });
             }
-            $http.post('/contacts', email).success(function(data){
-               console.log("success");
-            });
+            console.log("not valid")
         }
     }
 ]);

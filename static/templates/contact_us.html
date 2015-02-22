@@ -40,7 +40,8 @@
             <div class="error" ng-show="form.tel.$error.pattern">telefono invalido</div>
             <textarea rows="10" name="content" placeholder="scrivi la tua richiesta qui" ng-model="content" ng-required="true"></textarea>
             <div class="error" ng-show="form.content.$error.required && !form.content.$pristine">la richiesta non può essere vuota</div>
-            <input type="submit" id="invia" value="invia" class="pull-right"/>
+            <input ng-show="form.$valid && !done" type="submit" id="invia" value="invia" class="pull-right"/>
+            <div id="subimtted" ng-show="done">richiesta inviata</div>
         </form>
     </aside>
 </div>
