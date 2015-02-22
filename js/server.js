@@ -7,13 +7,7 @@ var CRUDCollection = require('percolator').CRUDCollection;
 var mongoose = require('mongoose');
 
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'matteoburgassi@gmail.com',
-        pass: '696WDxk585QSzj'
-    }
-});
+var transporter = null;
 
 var fs = require('fs');
 var multiparty = require('multiparty')
@@ -24,9 +18,24 @@ var multiparty = require('multiparty')
 var STATICDIR = __dirname + "/../static/data";
 
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
+    transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'qayinarchitettura@gmail.com',
+            pass: 'nessunotocchicaino' +
+                ''
+        }
+    });
 	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + "nodejsprod");
 	console.log("connect to mongodb url: ", process.env.OPENSHIFT_MONGODB_DB_URL);
 } else {
+    transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'matteoburgassi@gmail.com',
+            pass: '696WDxk585QSzj'
+        }
+    });
 	mongoose.connect('mongodb://0.0.0.0/YakTest');
 }
 
@@ -421,7 +430,8 @@ var mailer = {
             if(err){
                 return res.status.badRequest("not a json");
             }
-            obj.to = transporter.auth.user;
+
+            obj.to = transporter.transporter.options.auth.user;
             transporter.sendMail(obj, function(){
                 res.object({"result" : "sended"}).send();
 

@@ -402,3 +402,25 @@ qayinControllers.controller('linkCtrl', ['$scope', '$http',
         });
     }
 ]);
+
+qayinControllers.controller('contactCtrl', ['$scope', '$http',
+    function($scope, $http) {
+    }
+]);
+
+qayinControllers.controller('contactForm', ['$scope', '$http',
+    function($scope, $http) {
+
+        $scope.invia = function(){
+            console.log("invia")
+            var email = {
+                from: $scope.form.email.$viewValue,
+                subject: 'richiesta da sito QayinArchitettura',
+                text: "telefono: " + $scope.form.tel.$viewValue +"\n"+ $scope.form.content.$viewValue
+            }
+            $http.post('/contacts', email).success(function(data){
+               console.log("success");
+            });
+        }
+    }
+]);

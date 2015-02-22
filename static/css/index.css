@@ -34,6 +34,7 @@ em{
 
 header{
     margin-top: 50px;
+    margin-bottom: 20px;
     height: 80px;
 }
 
@@ -217,3 +218,23 @@ aside #details{
     background-color: #FFF;
 
 }
+
+form input, form textarea {
+    border: none;
+    border-bottom: 1px solid #959595;
+    width: 100%;
+    display: block;
+    margin-bottom: 3px;
+}
+
+form .error{
+    color: red;
+}
+
+form input[type=submit]{
+    background: none;
+    color: #959595;
+    width: auto;
+    display: inline;
+}
+

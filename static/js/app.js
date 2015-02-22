@@ -46,8 +46,8 @@ qayin.config(
             })
             .state('contatti', {
                 url: "/contatti",
-                templateUrl: "templates/home.html",
-                controller: "homeCtrl"
+                templateUrl: "templates/contact_us.html",
+                controller: "contactCtrl"
             })
             .state('profilo', {
                 url: "/profilo",
