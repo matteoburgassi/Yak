@@ -33,21 +33,21 @@
     <aside class="col-md-2">
         <form ng-controller="contactForm" ng-submit="invia()" name="form" novalidate id="contactForm">
             <em class="tex">email: </em><input type="email" name="email" id="email" placeholder="latua@email" ng-model="email" ng-required="true"/>
-            <div class="error" ng-show="form.email.$error.required && !form.email.$pristine">il campo non può essere vuoto</div>
-            <div class="error" ng-show="form.email.$error.email">e-mail invalida</div>
+            <div class="text-error" ng-show="form.email.$error.required && !form.email.$pristine">il campo non può essere vuoto</div>
+            <div class="text-error" ng-show="form.email.$error.email">e-mail invalida</div>
             <em>tel.</em><input type="number" name="tel" id="tel" placeholder="--- -------" ng-model="tel" ng-pattern="/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/" ng-required="true"/>
-            <div class="error" ng-show="form.tel.$error.required && !form.tel.$pristine">il campo non può essere vuoto</div>
-            <div class="error" ng-show="form.tel.$error.pattern">telefono invalido</div>
+            <div class="text-error" ng-show="form.tel.$error.required && !form.tel.$pristine">il campo non può essere vuoto</div>
+            <div class="text-error" ng-show="form.tel.$error.pattern">telefono invalido</div>
             <em>scrivi la tua richiesta qui:</em>
             <textarea rows="10" name="content" ng-model="content" ng-required="true"></textarea>
-            <div class="error" ng-show="form.content.$error.required && !form.content.$pristine">la richiesta non può essere vuota</div>
+            <div class="text-error" ng-show="form.content.$error.required && !form.content.$pristine">la richiesta non può essere vuota</div>
             <input ng-show="form.$valid && !done" type="submit" id="invia" value="invia" class="pull-right"/>
             <div id="subimtted" ng-show="done">richiesta inviata</div>
         </form>
     </aside>
 </div>
 <footer class="row">
-    <aside class="col-md-2"><a href="https://www.facebook.com/qayinarchitettura" class="h2 facebook-link" >&nbsp;<span class="fa fa-facebook-square"></span></a>&nbsp;<a href="http://it.pinterest.com/qayin/" class="h2 pinterest-link"><span class="fa fa-pinterest-square"></span> </a></aside>
+    <aside class="col-md-2 social-links"><a href="https://www.facebook.com/qayinarchitettura" class="h2 facebook-link" ><span class="fa fa-facebook-square"></span></a><a href="http://it.pinterest.com/qayin/" class="h2 pinterest-link"><span class="fa fa-pinterest-square"></span> </a></aside>
     <section class="col-md-8">
     </section>
     <section class="col-md-2">

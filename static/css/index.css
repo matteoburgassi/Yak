@@ -10,7 +10,7 @@ body{
 
 a{
     color: #959595;
-    text-decoration: none;
+    text-decoration: underline;
     -webkit-transition: color 1s;
     -moz-transition: color 1s;
     -ms-transition: color 1s;
@@ -19,7 +19,7 @@ a{
 }
 a:hover, a:focus{
     color: #000000;
-    text-decoration: none;
+    text-decoration: underline;
     -webkit-transition: color 1s;
     -moz-transition: color 1s;
     -ms-transition: color 1s;
@@ -227,10 +227,6 @@ form input, form textarea {
     margin-bottom: 3px;
 }
 
-form .error{
-    color: red;
-}
-
 form input[type=submit]{
     background: none;
     color: #959595;
@@ -238,4 +234,11 @@ form input[type=submit]{
     display: inline;
 }
 
+.social-links a{
+    margin-right: 5px;
+}
+
+footer{
+    margin-top: 15px;
+}
 
