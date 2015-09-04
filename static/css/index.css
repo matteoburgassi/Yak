@@ -10,7 +10,6 @@ body{
 
 a{
     color: #959595;
-    text-decoration: underline;
     -webkit-transition: color 1s;
     -moz-transition: color 1s;
     -ms-transition: color 1s;
@@ -38,7 +37,11 @@ header{
     height: 80px;
 }
 
-header img{
+header div{
+    height: 100%;
+}
+
+header div img{
     display: block;
     margin: 0 auto;
     height: 100%;
@@ -238,7 +241,19 @@ form input[type=submit]{
     margin-right: 5px;
 }
 
+.carousel-control{
+    cursor: pointer;
+}
+
 footer{
     margin-top: 15px;
 }
 
+.left-logo{
+    width: 80%;
+    height: auto;
+    margin-top: 50%;
+    top: -75%;
+    position: relative;
+    margin-left: 0;
+}

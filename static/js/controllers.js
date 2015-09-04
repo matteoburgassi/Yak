@@ -90,7 +90,11 @@ qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state
             if((year==null || year==undefined) && (name == null||name==undefined)){
                 console.log("no params");
                 for(i=0; i<data.length; i++){
-                    var image = data[i].images[0];
+                    var image = {
+                        url:data[i].images[0],
+                        projectUrl: data[i].year + "/" + data[i].name
+                    };
+                    console.log(image);
                     if(image!= null || image != undefined)
                         result.push(image);
                 }
@@ -100,7 +104,10 @@ qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state
                 console.log("only year");
                 for(i=0; i<data.length; i++){
                     if(data[i].year==year){
-                        var image = data[i].images[0];
+                        var image = {
+                            url:data[i].images[0],
+                            projectUrl: data[i].year + "/" + data[i].name
+                        };
                         if(image!= null || image != undefined)
                             result.push(image);
                     }
@@ -113,7 +120,10 @@ qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state
                     if(data[i].name==name){
                         $scope.projectDetail = data[i];
                         for(var j=0; j<data[i].images.length; j++){
-                            var image = data[i].images[j];
+                            var image = {
+                                url: data[i].images[j],
+                                projectUrl: data[i].year + "/" + data[i].name
+                            };
                             if(image!= null || image != undefined)
                                 result.push(image);
 
