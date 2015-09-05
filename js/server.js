@@ -84,7 +84,12 @@ var jsonSchema = {
 			title : "images",
 			type : "array",
 			required : false
-		}
+		},
+        published : {
+            title: "published",
+            type: "boolean",
+            required: false
+        }
 	}
 };
 
@@ -165,7 +170,8 @@ var documentSchema = mongoose.Schema({
 			caption: String,
 			path: String
 		}
-	]
+	],
+    published: Boolean
 });
 
 var cvMongooseSchema = mongoose.Schema({
@@ -248,7 +254,8 @@ var documentsCollection = new CRUDCollection({
 				description: obj.description,
 				authors: obj.authors,
 				date: obj.date,
-				images: obj.images
+				images: obj.images,
+                published: obj.published
 			},
 			function(){
 				cb();

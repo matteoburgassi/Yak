@@ -16,8 +16,13 @@ qayinControllers.controller('homeCtrl', ['$scope', '$http', '$location', '$state
                 loader.fadeOut("slow");
         }
         if($scope.projects === null || $scope.projects===undefined){
+            $scope.projects = [];
             $http.get('/documents').success(function(data) {
-                $scope.projects = data._items;
+                for(i=0;i<data._items.length; i++){
+                    if(data._items[i].published){
+                        $scope.projects.push(data._items[i]);
+                    }
+                }
                 $scope.menuData = createMenuData($scope.projects);
                 $scope.slideShow = createSlideShow($scope.params);
                 $scope.showLoader(false);
@@ -150,8 +155,13 @@ qayinControllers.controller('designersCtrl', ['$scope', '$http', '$location', '$
         }
         if($scope.projects === null || $scope.projects===undefined || $scope.designers === null || $scope.designers ===undefined){
             $http.get('/documents').success(function(data) {
+                $scope.projects=[];
                 $http.get('/designers').success(function(designers){
-                    $scope.projects = data._items;
+                    for(i=0;i<data._items.length; i++){
+                        if(data._items[i].published){
+                            $scope.projects.push(data._items[i]);
+                        }
+                    }
                     $scope.menuData = createMenuData($scope.projects);
                     $scope.slideShow = createSlideShow($scope.params);
                     $scope.designers = designers._items;
@@ -277,7 +287,12 @@ qayinControllers.controller('designersDetailCtrl', ['$scope', '$http', '$locatio
         if($scope.projects === null || $scope.projects===undefined || $scope.designers === null || $scope.designers ===undefined){
             $http.get('/documents').success(function(data) {
                 $http.get('/designers').success(function(designers){
-                    $scope.projects = data._items;
+                    $scope.projects=[];
+                    for(i=0;i<data._items.length; i++){
+                        if(data._items[i].published){
+                            $scope.projects.push(data._items[i]);
+                        }
+                    }
                     $scope.menuData = createMenuData($scope.projects);
                     $scope.slideShow = createSlideShow($scope.params);
                     $scope.designers = designers._items;
